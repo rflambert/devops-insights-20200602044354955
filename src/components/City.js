@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { Button } from 'react-bootstrap'
 
 function City(props) {
 
     const [validationError, setValidationError] = useState(null);
 
-    const validate = (event) => {
+    const validate = (value) => {
         setValidationError('');
-        props.onCityNameChange(event.target.value);
+        props.onCityNameChange(value);
     };
 
     return (
@@ -23,14 +24,20 @@ function City(props) {
                         type="text" 
                         className="form-control" 
                         id="usr" 
-                        placeholder="NZ city name"
+                        placeholder="City name..."
                         onKeyPress={(event) => {
                             if (event.key === "Enter") {
-                                validate(event);
+                                validate(event.target.value);
                             }
                         }}
-                    ></input>   
+                    ></input> 
                 </div>
+                <Button
+                    variant={"primary"}
+                    onClick={() => {
+                        validate(document.getElementById("usr").value);
+                    }}
+                >Search</Button>  
             </div>
             <div className="pl-3 row">
                 <div className="text-danger small"> { validationError }</div>

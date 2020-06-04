@@ -23,7 +23,7 @@ module.exports = {
     
         await nzweather.waitForElementVisible('@table');
 
-        cityName.expect.element('@firstApp').text.to.equal('Leander');
+        cityName.expect.element('@firstApp').text.to.equal('Auckland');
     },
 
     'Navigate to the nzweather - invalid city name': async (browser) => {
