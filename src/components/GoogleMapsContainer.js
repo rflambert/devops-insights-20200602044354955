@@ -21,6 +21,7 @@ class GoogleMapsContainer extends Component {
                 lat: city.lat,
                 lng: city.lng
             }}
+            animation={this.props.google.maps.Animation.DROP}
             onClick={() => {this.props.onMarkerSelect(city.name)}}/>
         })
     }
