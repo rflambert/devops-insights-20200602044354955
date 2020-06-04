@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import fetch from 'isomorphic-unfetch'
+import fetch from 'isomorphic-unfetch';
 import CityResponse from '../components/CityResponse';
 import City from '../components/City';
+import GoogleMapsContainer from '../components/GoogleMapsContainer';
 
 function AppContainer(props) {
-
     const [responseData, setResponseData] = useState('');
 
     const handleCityNameChange = async (cityName) => {
@@ -21,6 +21,7 @@ function AppContainer(props) {
 
     return (
         <div>
+            <GoogleMapsContainer onMarkerSelect={handleCityNameChange}/>
             <div className="row mt-4">
                 <div className="col-sm-4"></div>
                 <City onCityNameChange={handleCityNameChange} clearResponse={clearResponse}/>
@@ -34,5 +35,5 @@ function AppContainer(props) {
         </div>
     );
 }
-  
+
 export default AppContainer
