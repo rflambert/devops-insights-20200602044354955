@@ -10,49 +10,34 @@ module.exports = {
         .end(done);
     },
 
-    'Navigate to the DemoDOI - valid zip': async (browser) => {
-        const demodoi = browser.page.demodoi();
-        const { cityName } = demodoi.section;
+    'Navigate to the NZ Weather - valid city name': async (browser) => {
+        const nzweather = browser.page.nzweather();
+        const { cityName } = nzweather.section;
     
-        await demodoi.navigate().waitForElementVisible('@inputText');
+        await nzweather.navigate().waitForElementVisible('@inputText');
 
-        await demodoi.setValue('@inputText', [
-            '78641',
+        await nzweather.setValue('@inputText', [
+            'Auckland',
             browser.Keys.ENTER
           ]);
     
-        await demodoi.waitForElementVisible('@table');
+        await nzweather.waitForElementVisible('@table');
 
         cityName.expect.element('@firstApp').text.to.equal('Leander');
     },
 
-    'Navigate to the DemoDOI - invalid zip': async (browser) => {
-        const demodoi = browser.page.demodoi();
+    'Navigate to the nzweather - invalid city name': async (browser) => {
+        const nzweather = browser.page.nzweather();
     
-        await demodoi.navigate().waitForElementVisible('@inputText');
+        await nzweather.navigate().waitForElementVisible('@inputText');
 
-        await demodoi.setValue('@inputText', [
-            '90000',
+        await nzweather.setValue('@inputText', [
+            'London',
             browser.Keys.ENTER
           ]);
     
-        await demodoi.waitForElementNotPresent('@table');
+        await nzweather.waitForElementNotPresent('@table');
 
-        demodoi.expect.element('@cityNotFound').text.to.equal('city not found');
-    },
-
-    'Navigate to the DemoDOI - invalid input': async (browser) => {
-        const demodoi = browser.page.demodoi();
-    
-        await demodoi.navigate().waitForElementVisible('@inputText');
-
-        await demodoi.setValue('@inputText', [
-            'ABCDE',
-            browser.Keys.ENTER
-          ]);
-    
-        await demodoi.waitForElementNotPresent('@table');
-
-        demodoi.expect.element('@invalidCity').text.to.equal('* should be a 5 digit number only');
+        nzweather.expect.element('@cityNotFound').text.to.equal('city not found');
     },
 };

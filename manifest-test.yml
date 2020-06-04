@@ -1,6 +1,6 @@
 applications:
 - disk_quota: 1024M
-  name: demodoitest
+  name: nzweathertest
   command: npx serve -s build
   path: .
   instances: 1

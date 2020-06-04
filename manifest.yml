@@ -1,6 +1,6 @@
 applications:
 - disk_quota: 1024M
-  name: demodoi
+  name: nzweather
   command: npx serve -s build
   path: .
   instances: 1
