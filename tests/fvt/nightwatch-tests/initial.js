@@ -23,7 +23,7 @@ module.exports = {
     
         await nzweather.waitForElementVisible('@table');
 
-        cityName.expect.element('@firstApp').text.to.equal('Leander');
+        cityName.expect.element('@firstApp').text.to.equal('Auckland');
     },
 
     'Navigate to the nzweather - invalid city name': async (browser) => {
@@ -40,4 +40,15 @@ module.exports = {
 
         nzweather.expect.element('@cityNotFound').text.to.equal('city not found');
     },
+
+    'Navigate to NZ Weather - click city marker': async (browser) => {
+      const nzweather = browser.page.nzweather();
+      const { cityName } = nzweather.section;
+
+      await nzweather.waitForElementVisible('marker').moveToElement('marker', undefined, undefined).click('marker');
+
+      await nzweather.waitForElementVisible('@table');
+
+      cityName.expect.element('@firstApp').text.to.equal('Auckland');
+    }
 };
