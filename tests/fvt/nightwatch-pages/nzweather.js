@@ -13,6 +13,9 @@ module.exports = {
     },
     invalidCity: {
         selector: '.pl-3.row .text-danger'
+    },
+    marker: {
+        selector: 'Marker'
     }
   },
   sections: {
